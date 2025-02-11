@@ -138,6 +138,7 @@
     </div>
 
     <script>
+        // Function to switch between English and Arabic content
         function switchLanguage(lang) {
             if (lang === 'ar') {
                 document.body.dir = "rtl";
@@ -157,6 +158,27 @@
                 `;
             }
         }
+
+        // PayPal donation link
+        const baseUrl = "https://www.paypal.com/donate/?business=X2EGVHESEH2UJ&no_recurring=0&item_name=Help+Gaza&currency_code=USD";
+        
+        // Donation button event listeners
+        document.querySelectorAll('.donation-option').forEach(option => {
+            option.addEventListener('click', function() {
+                let amount = this.dataset.amount;
+                window.open(`${baseUrl}&amount=${amount}`, '_blank');
+            });
+        });
+
+        document.querySelector('.custom-donate-btn').addEventListener('click', function() {
+            let amount = document.getElementById('custom-amount').value;
+            if (amount) {
+                window.open(`${baseUrl}&amount=${amount}`, '_blank');
+            } else {
+                alert('Please enter a valid amount');
+            }
+        });
+
     </script>
 
 </body>
