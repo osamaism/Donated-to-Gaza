@@ -93,7 +93,7 @@
 
     <div class="content-wrapper">
         <div class="main-image-container">
-            <img class="main-image" src="https://ksr.org.kw/images/detailed/9/علاج_سوء_التغذية_-_غزة_web-100.jpg" alt="Gaza Strip Relief">
+            <img class="main-image" src="https://ksr.org.kw/images/detailed/9/%D8%B9%D9%84%D8%A7%D8%AC_%D8%B3%D9%88%D8%A1_%D8%A7%D9%84%D8%AA%D8%BA%D8%B0%D9%8A%D8%A9_-%D8%BA%D8%B2%D8%A9_web-100.jpg" alt="Gaza Strip Relief">
         </div>
         <div class="donation-section">
             <div class="currency-selector">
@@ -119,58 +119,21 @@
     </div>
 
     <div class="description" id="description">
-        <p id="desc-text">The ongoing aggression on the people of Gaza Strip for more than 11 months has resulted in <strong>50,000 children</strong> in northern Gaza suffering from malnutrition.</p>
-        <p id="desc-text2">During the war period, at least <strong>60,000 pregnant women</strong> suffered from malnutrition, and about <strong>45 people, including children,</strong> died due to the same suffering.</p>
-        <p id="desc-text3">In southern Gaza, nearly <strong>4,000 children</strong> are suffering from symptoms of severe acute malnutrition that can lead to death, and thousands more lack nutritional supplements, therapeutic foods, and appropriate treatments for malnutrition cases ranging from normal to acute and severe.</p>
+        <p id="desc-text" data-en="The ongoing aggression on the people of Gaza Strip has resulted in thousands suffering from malnutrition." data-ar="العدوان المستمر على سكان قطاع غزة أدى إلى معاناة الآلاف من سوء التغذية."></p>
     </div>
 
     <script>
-        const baseUrl = "https://www.paypal.com/donate/?business=X2EGVHESEH2UJ&no_recurring=0&item_name=Help+Gaza&currency_code=USD";
-
         function switchLanguage(lang) {
             if (lang === 'ar') {
                 document.body.dir = "rtl";
                 document.getElementById('title').innerText = "علاج سوء التغذية للأطفال الرضع والنساء الحوامل في قطاع غزة";
+                document.getElementById('desc-text').innerText = document.getElementById('desc-text').getAttribute('data-ar');
             } else {
                 document.body.dir = "ltr";
                 document.getElementById('title').innerText = "Treatment of Malnutrition for Infants and Pregnant Women in Gaza Strip";
+                document.getElementById('desc-text').innerText = document.getElementById('desc-text').getAttribute('data-en');
             }
         }
-
-        function updateDonationAmounts() {
-            let currency = document.getElementById('currency').value;
-            document.querySelectorAll('.donation-option').forEach(option => {
-                let amount = currency === "KWD" ? option.getAttribute("data-kwd") : option.getAttribute("data-usd");
-                option.innerText = `Donate ${amount} ${currency}`;
-            });
-        }
-
-        function processDonation(amount, currency) {
-            if (currency === "KWD") {
-                amount = (amount * 3.3).toFixed(2);
-            }
-            window.open(`${baseUrl}&amount=${amount}`, '_blank');
-        }
-
-        document.querySelectorAll('.donation-option').forEach(option => {
-            option.addEventListener('click', function() {
-                let currency = document.getElementById('currency').value;
-                let amount = currency === "KWD" ? parseFloat(this.getAttribute("data-kwd")) : parseFloat(this.getAttribute("data-usd"));
-                processDonation(amount, currency);
-            });
-        });
-
-        document.querySelector('.custom-donate-btn').addEventListener('click', function() {
-            let amount = parseFloat(document.getElementById('custom-amount').value);
-            let currency = document.getElementById('currency').value;
-            if (amount && !isNaN(amount) && amount > 0) {
-                processDonation(amount, currency);
-            } else {
-                alert('Please enter a valid amount.');
-            }
-        });
-
-        updateDonationAmounts();
     </script>
 
 </body>
