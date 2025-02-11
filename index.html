@@ -140,9 +140,8 @@
         function updateDonationAmounts() {
             let currency = document.getElementById('currency').value;
             document.querySelectorAll('.donation-option').forEach(option => {
-                let amountUSD = option.getAttribute("data-usd");
-                let amountKWD = option.getAttribute("data-kwd");
-                option.innerText = `Donate ${currency === "KWD" ? amountKWD : amountUSD} ${currency}`;
+                let amount = currency === "KWD" ? option.getAttribute("data-kwd") : option.getAttribute("data-usd");
+                option.innerText = `Donate ${amount} ${currency}`;
             });
         }
 
