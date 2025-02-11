@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treatment of Malnutrition for Infants and Pregnant Women in Gaza Strip :: Urgent Relief</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .language-switch {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .language-switch button {
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .content-wrapper {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .main-image-container {
+            width: 70%;
+        }
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .donation-section {
+            width: 25%;
+        }
+        .currency-selector {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 15px;
+        }
+        .currency-option {
+            padding: 5px 10px;
+            margin-right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .currency-option.selected {
+            background-color: #45a049;
+        }
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .donation-option {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+        }
+        .custom-amount-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 15px;
+        }
+        #custom-amount {
+            width: 150px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        .custom-donate-btn {
+            padding: 10px 20px;
+            background-color: #b11f1f;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .description {
+            background-color: #f5f5f5;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="language-switch">
+        <button onclick="switchLanguage('ar')">العربية</button>
+        <button onclick="switchLanguage('en')">English</button>
+    </div>
+
+    <h1 id="title">Treatment of Malnutrition for Infants and Pregnant Women in Gaza Strip</h1>
+
+    <div class="content-wrapper">
+        <div class="main-image-container">
+            <img class="main-image" src="https://ksr.org.kw/images/detailed/9/علاج_سوء_التغذية_-_غزة_web-100.jpg" alt="Gaza Strip Relief">
+        </div>
+        <div class="donation-section">
+            <div class="currency-selector">
+                <button class="currency-option selected" data-currency="KWD">KWD</button>
+                <button class="currency-option" data-currency="USD">USD</button>
+            </div>
+
+            <div class="donation-options">
+                <button class="donation-option" data-amount="10">10 KWD</button>
+                <button class="donation-option" data-amount="20">20 KWD</button>
+                <button class="donation-option" data-amount="50">50 KWD</button>
+                <button class="donation-option" data-amount="100">100 KWD</button>
+            </div>
+
+            <div class="custom-amount-container">
+                <input type="number" id="custom-amount" placeholder="Other amount">
+                <button class="custom-donate-btn">Donate</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="description" id="description">
+        <p>The ongoing aggression on the people of Gaza Strip for more than 11 months has resulted in <strong>50,000 children</strong> in northern Gaza suffering from malnutrition.</p>
+        <p>During the war period, at least <strong>60,000 pregnant women</strong> suffered from malnutrition, and about <strong>45 people, including children,</strong> died due to the same suffering.</p>
+        <p>In southern Gaza, nearly <strong>4,000 children</strong> are suffering from symptoms of severe acute malnutrition that can lead to death, and thousands more lack nutritional supplements, therapeutic foods, and appropriate treatments for malnutrition cases ranging from normal to acute and severe.</p>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            if (lang === 'ar') {
+                document.body.dir = "rtl";
+                document.getElementById('title').innerText = "علاج سوء التغذية للأطفال الرضع والنساء الحوامل في قطاع غزة";
+                document.getElementById('description').innerHTML = `
+                    <p>أدى العدوان المستمر على سكان قطاع غزة لأكثر من 11 شهرًا إلى معاناة <strong>50,000 طفل</strong> في شمال غزة من سوء التغذية.</p>
+                    <p>خلال فترة الحرب، عانت <strong>60,000 امرأة حامل</strong> على الأقل من سوء التغذية، وتوفي حوالي <strong>45 شخصًا، بينهم أطفال</strong> بسبب نفس المعاناة.</p>
+                    <p>في جنوب غزة، يعاني ما يقارب <strong>4,000 طفل</strong> من أعراض سوء التغذية الحاد الشديد التي يمكن أن تؤدي إلى الوفاة، ويعاني آلاف آخرون من نقص المكملات الغذائية والأطعمة العلاجية والعلاجات المناسبة لحالات سوء التغذية التي تتراوح بين الطبيعية والحادة والشديدة.</p>
+                `;
+            } else {
+                document.body.dir = "ltr";
+                document.getElementById('title').innerText = "Treatment of Malnutrition for Infants and Pregnant Women in Gaza Strip";
+                document.getElementById('description').innerHTML = `
+                    <p>The ongoing aggression on the people of Gaza Strip for more than 11 months has resulted in <strong>50,000 children</strong> in northern Gaza suffering from malnutrition.</p>
+                    <p>During the war period, at least <strong>60,000 pregnant women</strong> suffered from malnutrition, and about <strong>45 people, including children,</strong> died due to the same suffering.</p>
+                    <p>In southern Gaza, nearly <strong>4,000 children</strong> are suffering from symptoms of severe acute malnutrition that can lead to death, and thousands more lack nutritional supplements, therapeutic foods, and appropriate treatments for malnutrition cases ranging from normal to acute and severe.</p>
+                `;
+            }
+        }
+    </script>
+
+</body>
+</html>
