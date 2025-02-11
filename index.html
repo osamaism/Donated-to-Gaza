@@ -98,17 +98,17 @@
         <div class="donation-section">
             <div class="currency-selector">
                 <label for="currency">Select Currency:</label>
-                <select id="currency">
+                <select id="currency" onchange="updateDonationAmounts()">
                     <option value="USD" selected>USD ($)</option>
                     <option value="KWD">KWD (د.ك)</option>
                 </select>
             </div>
 
             <div class="donation-options">
-                <button class="donation-option" data-amount="10">Donate 10</button>
-                <button class="donation-option" data-amount="20">Donate 20</button>
-                <button class="donation-option" data-amount="50">Donate 50</button>
-                <button class="donation-option" data-amount="100">Donate 100</button>
+                <button class="donation-option" data-usd="10">Donate 10</button>
+                <button class="donation-option" data-usd="20">Donate 20</button>
+                <button class="donation-option" data-usd="50">Donate 50</button>
+                <button class="donation-option" data-usd="100">Donate 100</button>
             </div>
 
             <div class="custom-amount-container">
@@ -137,6 +137,19 @@
 
         const baseUrl = "https://www.paypal.com/donate/?business=X2EGVHESEH2UJ&no_recurring=0&item_name=Help+Gaza&currency_code=USD";
 
+        function updateDonationAmounts() {
+            let currency = document.getElementById('currency').value;
+            document.querySelectorAll('.donation-option').forEach(option => {
+                let amountUSD = parseFloat(option.getAttribute("data-usd"));
+                if (currency === "KWD") {
+                    let amountKWD = (amountUSD / 3.3).toFixed(2); // Convert USD to KWD
+                    option.innerText = `Donate ${amountKWD} KWD`;
+                } else {
+                    option.innerText = `Donate ${amountUSD} USD`;
+                }
+            });
+        }
+
         function processDonation(amount) {
             let currency = document.getElementById('currency').value;
             if (currency === "KWD") {
@@ -147,19 +160,25 @@
 
         document.querySelectorAll('.donation-option').forEach(option => {
             option.addEventListener('click', function() {
-                let amount = parseFloat(this.getAttribute("data-amount"));
+                let amount = parseFloat(this.getAttribute("data-usd"));
                 processDonation(amount);
             });
         });
 
         document.querySelector('.custom-donate-btn').addEventListener('click', function() {
             let amount = parseFloat(document.getElementById('custom-amount').value);
+            let currency = document.getElementById('currency').value;
             if (amount && !isNaN(amount) && amount > 0) {
+                if (currency === "KWD") {
+                    amount = (amount * 3.3).toFixed(2); // Convert KWD to USD
+                }
                 processDonation(amount);
             } else {
                 alert('Please enter a valid amount.');
             }
         });
+
+        updateDonationAmounts(); // Initialize button text
     </script>
 
 </body>
