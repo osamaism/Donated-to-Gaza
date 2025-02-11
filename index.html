@@ -43,6 +43,10 @@
         .donation-section {
             width: 25%;
         }
+        .currency-selector {
+            margin-bottom: 15px;
+            text-align: center;
+        }
         .donation-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -61,7 +65,7 @@
         }
         .custom-amount-container {
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
             margin-bottom: 15px;
         }
         #custom-amount {
@@ -92,11 +96,19 @@
             <img class="main-image" src="https://ksr.org.kw/images/detailed/9/علاج_سوء_التغذية_-_غزة_web-100.jpg" alt="Gaza Strip Relief">
         </div>
         <div class="donation-section">
+            <div class="currency-selector">
+                <label for="currency">Select Currency:</label>
+                <select id="currency">
+                    <option value="USD" selected>USD ($)</option>
+                    <option value="KWD">KWD (د.ك)</option>
+                </select>
+            </div>
+
             <div class="donation-options">
-                <button class="donation-option" data-amount="10">Donate $10</button>
-                <button class="donation-option" data-amount="20">Donate $20</button>
-                <button class="donation-option" data-amount="50">Donate $50</button>
-                <button class="donation-option" data-amount="100">Donate $100</button>
+                <button class="donation-option" data-amount="10">Donate 10</button>
+                <button class="donation-option" data-amount="20">Donate 20</button>
+                <button class="donation-option" data-amount="50">Donate 50</button>
+                <button class="donation-option" data-amount="100">Donate 100</button>
             </div>
 
             <div class="custom-amount-container">
@@ -133,21 +145,23 @@
             }
         }
 
-        const baseUrl = "https://www.paypal.com/donate/?business=X2EGVHESEH2UJ&no_recurring=0&item_name=Help+Gaza+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%0Athey+are+sulfuring++&currency_code=USD";
+        const baseUrl = "https://www.paypal.com/donate/?business=X2EGVHESEH2UJ&no_recurring=0&item_name=Help+Gaza&currency_code=";
 
         document.querySelectorAll('.donation-option').forEach(option => {
             option.addEventListener('click', function() {
                 let amount = this.getAttribute("data-amount");
-                window.location.href = `${baseUrl}&amount=${amount}`;
+                let currency = document.getElementById('currency').value;
+                window.open(`${baseUrl}${currency}&amount=${amount}`, '_blank');
             });
         });
 
         document.querySelector('.custom-donate-btn').addEventListener('click', function() {
             let amount = document.getElementById('custom-amount').value;
-            if (amount && !isNaN(amount)) {
-                window.location.href = `${baseUrl}&amount=${amount}`;
+            let currency = document.getElementById('currency').value;
+            if (amount && !isNaN(amount) && amount > 0) {
+                window.open(`${baseUrl}${currency}&amount=${amount}`, '_blank');
             } else {
-                alert('Please enter a valid amount');
+                alert('Please enter a valid amount.');
             }
         });
     </script>
