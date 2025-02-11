@@ -43,36 +43,21 @@
         .donation-section {
             width: 25%;
         }
-        .currency-selector {
-            display: flex;
-            justify-content: flex-start;
-            margin-bottom: 15px;
-        }
-        .currency-option {
-            padding: 5px 10px;
-            margin-right: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .currency-option.selected {
-            background-color: #45a049;
-        }
         .donation-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
             margin-bottom: 15px;
         }
-        .donation-option {
-            padding: 8px 12px;
+        .donation-option, .custom-donate-btn {
+            padding: 10px 15px;
             background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
             text-align: center;
             font-size: 14px;
+            border-radius: 5px;
         }
         .custom-amount-container {
             display: flex;
@@ -83,13 +68,8 @@
             width: 150px;
             padding: 10px;
             margin-right: 10px;
-        }
-        .custom-donate-btn {
-            padding: 10px 20px;
-            background-color: #b11f1f;
-            color: white;
-            border: none;
-            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
         .description {
             background-color: #f5f5f5;
@@ -112,20 +92,15 @@
             <img class="main-image" src="https://ksr.org.kw/images/detailed/9/علاج_سوء_التغذية_-_غزة_web-100.jpg" alt="Gaza Strip Relief">
         </div>
         <div class="donation-section">
-            <div class="currency-selector">
-                <button class="currency-option selected" data-currency="KWD">KWD</button>
-                <button class="currency-option" data-currency="USD">USD</button>
-            </div>
-
             <div class="donation-options">
-                <button class="donation-option" data-amount="10">10 KWD</button>
-                <button class="donation-option" data-amount="20">20 KWD</button>
-                <button class="donation-option" data-amount="50">50 KWD</button>
-                <button class="donation-option" data-amount="100">100 KWD</button>
+                <button class="donation-option" data-amount="10">Donate $10</button>
+                <button class="donation-option" data-amount="20">Donate $20</button>
+                <button class="donation-option" data-amount="50">Donate $50</button>
+                <button class="donation-option" data-amount="100">Donate $100</button>
             </div>
 
             <div class="custom-amount-container">
-                <input type="number" id="custom-amount" placeholder="Other amount">
+                <input type="number" id="custom-amount" placeholder="Enter amount">
                 <button class="custom-donate-btn">Donate</button>
             </div>
         </div>
@@ -138,7 +113,6 @@
     </div>
 
     <script>
-        // Function to switch between English and Arabic content
         function switchLanguage(lang) {
             if (lang === 'ar') {
                 document.body.dir = "rtl";
@@ -159,26 +133,23 @@
             }
         }
 
-        // PayPal donation link
-        const baseUrl = "https://www.paypal.com/donate/?business=X2EGVHESEH2UJ&no_recurring=0&item_name=Help+Gaza+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%0Athey+are+sulfuring++&currency_code=USD";
-        
-        // Donation button event listeners
+        const baseUrl = "https://www.paypal.com/donate/?business=X2EGVHESEH2UJ&no_recurring=0&item_name=Help+Gaza&currency_code=USD";
+
         document.querySelectorAll('.donation-option').forEach(option => {
             option.addEventListener('click', function() {
-                let amount = this.dataset.amount;
-                window.open(`${baseUrl}&amount=${amount}`, '_blank');
+                let amount = this.getAttribute("data-amount");
+                window.location.href = `${baseUrl}&amount=${amount}`;
             });
         });
 
         document.querySelector('.custom-donate-btn').addEventListener('click', function() {
             let amount = document.getElementById('custom-amount').value;
-            if (amount) {
-                window.open(`${baseUrl}&amount=${amount}`, '_blank');
+            if (amount && !isNaN(amount)) {
+                window.location.href = `${baseUrl}&amount=${amount}`;
             } else {
                 alert('Please enter a valid amount');
             }
         });
-
     </script>
 
 </body>
