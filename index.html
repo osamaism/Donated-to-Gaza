@@ -135,27 +135,27 @@
             }
         }
 
-        const baseUrl = "https://www.paypal.com/donate/?business=X2EGVHESEH2UJ&no_recurring=0&item_name=Help+Gaza";
+        const baseUrl = "https://www.paypal.com/donate/?business=X2EGVHESEH2UJ&no_recurring=0&item_name=Help+Gaza&currency_code=USD";
+
+        function processDonation(amount) {
+            let currency = document.getElementById('currency').value;
+            if (currency === "KWD") {
+                amount = (amount * 3.3).toFixed(2); // Convert KWD to USD
+            }
+            window.open(`${baseUrl}&amount=${amount}`, '_blank');
+        }
 
         document.querySelectorAll('.donation-option').forEach(option => {
             option.addEventListener('click', function() {
                 let amount = parseFloat(this.getAttribute("data-amount"));
-                let currency = document.getElementById('currency').value;
-                if (currency === "KWD") {
-                    amount = (amount * 0.31).toFixed(2); // Convert USD to KWD (Example Rate)
-                }
-                window.open(`${baseUrl}&currency_code=${currency}&amount=${amount}`, '_blank');
+                processDonation(amount);
             });
         });
 
         document.querySelector('.custom-donate-btn').addEventListener('click', function() {
             let amount = parseFloat(document.getElementById('custom-amount').value);
-            let currency = document.getElementById('currency').value;
             if (amount && !isNaN(amount) && amount > 0) {
-                if (currency === "KWD") {
-                    amount = (amount * 0.31).toFixed(2); // Convert USD to KWD (Example Rate)
-                }
-                window.open(`${baseUrl}&currency_code=${currency}&amount=${amount}`, '_blank');
+                processDonation(amount);
             } else {
                 alert('Please enter a valid amount.');
             }
