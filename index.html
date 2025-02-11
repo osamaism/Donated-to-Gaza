@@ -129,37 +129,33 @@
             if (lang === 'ar') {
                 document.body.dir = "rtl";
                 document.getElementById('title').innerText = "علاج سوء التغذية للأطفال الرضع والنساء الحوامل في قطاع غزة";
-                document.getElementById('description').innerHTML = `
-                    <p>أدى العدوان المستمر على سكان قطاع غزة لأكثر من 11 شهرًا إلى معاناة <strong>50,000 طفل</strong> في شمال غزة من سوء التغذية.</p>
-                    <p>خلال فترة الحرب، عانت <strong>60,000 امرأة حامل</strong> على الأقل من سوء التغذية، وتوفي حوالي <strong>45 شخصًا، بينهم أطفال</strong> بسبب نفس المعاناة.</p>
-                    <p>في جنوب غزة، يعاني ما يقارب <strong>4,000 طفل</strong> من أعراض سوء التغذية الحاد الشديد التي يمكن أن تؤدي إلى الوفاة، ويعاني آلاف آخرون من نقص المكملات الغذائية والأطعمة العلاجية والعلاجات المناسبة لحالات سوء التغذية التي تتراوح بين الطبيعية والحادة والشديدة.</p>
-                `;
             } else {
                 document.body.dir = "ltr";
                 document.getElementById('title').innerText = "Treatment of Malnutrition for Infants and Pregnant Women in Gaza Strip";
-                document.getElementById('description').innerHTML = `
-                    <p>The ongoing aggression on the people of Gaza Strip for more than 11 months has resulted in <strong>50,000 children</strong> in northern Gaza suffering from malnutrition.</p>
-                    <p>During the war period, at least <strong>60,000 pregnant women</strong> suffered from malnutrition, and about <strong>45 people, including children,</strong> died due to the same suffering.</p>
-                    <p>In southern Gaza, nearly <strong>4,000 children</strong> are suffering from symptoms of severe acute malnutrition that can lead to death, and thousands more lack nutritional supplements, therapeutic foods, and appropriate treatments for malnutrition cases ranging from normal to acute and severe.</p>
-                `;
             }
         }
 
-        const baseUrl = "https://www.paypal.com/donate/?business=X2EGVHESEH2UJ&no_recurring=0&item_name=Help+Gaza&currency_code=";
+        const baseUrl = "https://www.paypal.com/donate/?business=X2EGVHESEH2UJ&no_recurring=0&item_name=Help+Gaza";
 
         document.querySelectorAll('.donation-option').forEach(option => {
             option.addEventListener('click', function() {
-                let amount = this.getAttribute("data-amount");
+                let amount = parseFloat(this.getAttribute("data-amount"));
                 let currency = document.getElementById('currency').value;
-                window.open(`${baseUrl}${currency}&amount=${amount}`, '_blank');
+                if (currency === "KWD") {
+                    amount = (amount * 0.31).toFixed(2); // Convert USD to KWD (Example Rate)
+                }
+                window.open(`${baseUrl}&currency_code=${currency}&amount=${amount}`, '_blank');
             });
         });
 
         document.querySelector('.custom-donate-btn').addEventListener('click', function() {
-            let amount = document.getElementById('custom-amount').value;
+            let amount = parseFloat(document.getElementById('custom-amount').value);
             let currency = document.getElementById('currency').value;
             if (amount && !isNaN(amount) && amount > 0) {
-                window.open(`${baseUrl}${currency}&amount=${amount}`, '_blank');
+                if (currency === "KWD") {
+                    amount = (amount * 0.31).toFixed(2); // Convert USD to KWD (Example Rate)
+                }
+                window.open(`${baseUrl}&currency_code=${currency}&amount=${amount}`, '_blank');
             } else {
                 alert('Please enter a valid amount.');
             }
