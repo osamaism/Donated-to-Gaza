@@ -119,7 +119,9 @@
     </div>
 
     <div class="description" id="description">
-        <p id="desc-text" data-en="The ongoing aggression on the people of Gaza Strip has resulted in thousands suffering from malnutrition." data-ar="العدوان المستمر على سكان قطاع غزة أدى إلى معاناة الآلاف من سوء التغذية."></p>
+        <p id="desc-text">The ongoing aggression on the people of Gaza Strip for more than 11 months has resulted in <strong>50,000 children</strong> in northern Gaza suffering from malnutrition.</p>
+        <p id="desc-text2">During the war period, at least <strong>60,000 pregnant women</strong> suffered from malnutrition, and about <strong>45 people, including children,</strong> died due to the same suffering.</p>
+        <p id="desc-text3">In southern Gaza, nearly <strong>4,000 children</strong> are suffering from symptoms of severe acute malnutrition that can lead to death, and thousands more lack nutritional supplements, therapeutic foods, and appropriate treatments for malnutrition cases ranging from normal to acute and severe.</p>
     </div>
 
     <script>
@@ -127,11 +129,15 @@
             if (lang === 'ar') {
                 document.body.dir = "rtl";
                 document.getElementById('title').innerText = "علاج سوء التغذية للأطفال الرضع والنساء الحوامل في قطاع غزة";
-                document.getElementById('desc-text').innerText = document.getElementById('desc-text').getAttribute('data-ar');
+                document.getElementById('desc-text').innerHTML = "العدوان المستمر على سكان قطاع غزة لأكثر من 11 شهرًا أدى إلى معاناة <strong>50,000 طفل</strong> في شمال غزة من سوء التغذية.";
+                document.getElementById('desc-text2').innerHTML = "خلال فترة الحرب، عانت <strong>60,000 امرأة حامل</strong> على الأقل من سوء التغذية، وتوفي حوالي <strong>45 شخصًا، بينهم أطفال،</strong> بسبب نفس المعاناة.";
+                document.getElementById('desc-text3').innerHTML = "في جنوب غزة، يعاني ما يقارب <strong>4,000 طفل</strong> من أعراض سوء التغذية الحاد الشديد التي يمكن أن تؤدي إلى الوفاة، ويعاني آلاف آخرون من نقص المكملات الغذائية والأطعمة العلاجية والعلاجات المناسبة لحالات سوء التغذية.";
             } else {
                 document.body.dir = "ltr";
                 document.getElementById('title').innerText = "Treatment of Malnutrition for Infants and Pregnant Women in Gaza Strip";
-                document.getElementById('desc-text').innerText = document.getElementById('desc-text').getAttribute('data-en');
+                document.getElementById('desc-text').innerHTML = "The ongoing aggression on the people of Gaza Strip for more than 11 months has resulted in <strong>50,000 children</strong> in northern Gaza suffering from malnutrition.";
+                document.getElementById('desc-text2').innerHTML = "During the war period, at least <strong>60,000 pregnant women</strong> suffered from malnutrition, and about <strong>45 people, including children,</strong> died due to the same suffering.";
+                document.getElementById('desc-text3').innerHTML = "In southern Gaza, nearly <strong>4,000 children</strong> are suffering from symptoms of severe acute malnutrition that can lead to death, and thousands more lack nutritional supplements, therapeutic foods, and appropriate treatments for malnutrition cases ranging from normal to acute and severe.";
             }
         }
     </script>
